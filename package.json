@@ -4,10 +4,10 @@
   "description": "A Typescript class to perform operations on numbers in a string.",
   "main": "dist/index.js",
   "scripts": {
-    "test:watch": "jest --watch",
+		"test": "jest",
     "lint": "eslint 'src/**/*.ts'",
     "format": "prettier --write 'src/**/*.ts'",
-		"build": "tsc",
+    "build": "tsc",
     "watch": "tsc --watch",
     "start": "npm run build && node dist/index.js"
   },
@@ -22,17 +22,18 @@
   },
   "homepage": "https://github.com/gopalesagar/string-numbers-calculator#readme",
   "devDependencies": {
+    "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^8.24.0",
     "@typescript-eslint/parser": "^8.24.0",
     "eslint": "^9.20.1",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.3",
+    "jest": "^29.7.0",
     "prettier": "^3.5.0",
+    "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2"
   },
   "dependencies": {
-    "@types/jest": "^29.5.14",
-    "jest": "^29.7.0",
     "typescript": "^5.7.3"
   }
 }
