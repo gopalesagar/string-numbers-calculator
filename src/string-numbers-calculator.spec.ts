@@ -85,11 +85,21 @@ describe("String Calculator", () => {
 		});
 
 		describe("negative scenarios > ", () => {
-			it("should throw error if the string contains non-numeric values", () => {
+			it("should throw error if the input string contains non-numeric values", () => {
 				// Act, Assert
 				expect(() => {
 					calculator.add('5,\n, ,6,\nasd\n,');
 				}).toThrow('Invalid string: Non-numeric values detected!');
+			});
+
+			it("should throw error if the input string contains negative numbers", () => {
+				// Arrange
+				const input = '5,\n, ,-6,\n\n,-11,30,\n,,';
+
+				// Act, Assert
+				expect(() => {
+					calculator.add(input);
+				}).toThrow('Negative numbers are not allowed. Negative found: -6,-11');
 			});
 		});
 	});
