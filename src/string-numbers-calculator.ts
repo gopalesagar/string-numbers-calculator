@@ -1,5 +1,9 @@
 export class StringNumberCalculator {
-	add(numbers: string): number {
-		return 0;
+	add(input: string): number {
+		const sum = 0;
+		if(!input) {
+			return sum;
+		}
+		return sum;
 	}
 }
