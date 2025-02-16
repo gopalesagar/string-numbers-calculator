@@ -22,5 +22,13 @@ describe("String Calculator", () => {
 			// Assert
 			expect(sum).toEqual(0);
 		});
+
+		it("should return the number as is if single number is provided in string", () => {
+			// Act
+			const sum = calculator.add('5');
+
+			// Assert
+			expect(sum).toEqual(5);
+		});
 	});
 });
