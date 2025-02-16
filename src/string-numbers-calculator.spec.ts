@@ -15,20 +15,82 @@ describe("String Calculator", () => {
   });
 
 	describe("add function > ", () => {
-		it("should return 0 if empty string is received", () => {
-			// Act
-			const sum = calculator.add('');
+		describe("positive scenarios > ", () => {
+			it("should return 0 if empty string is received", () => {
+				// Act
+				const sum = calculator.add('');
 
-			// Assert
-			expect(sum).toEqual(0);
+				// Assert
+				expect(sum).toEqual(0);
+			});
+
+			it("should return 0 if string with only spaces is provided", () => {
+				// Act
+				const sum = calculator.add('  ');
+
+				// Assert
+				expect(sum).toEqual(0);
+			});
+
+			it("should return the number as the sum, if single number is provided in string", () => {
+				// Act
+				const sum = calculator.add('5');
+
+				// Assert
+				expect(sum).toEqual(5);
+			});
+
+			it("should return the number as the sum, if the string has only one number and additional delimeters separating empty values", () => {
+				// Act
+				const sum = calculator.add('\n9,,');
+
+				// Assert
+				expect(sum).toEqual(9);
+			});
+
+			it("should return the sum correctly if 2 numbers are provided in a string", () => {
+				// Act
+				const sum = calculator.add('5, 6');
+
+				// Assert
+				expect(sum).toEqual(11);
+			});
+
+			it("should return the sum correctly if 2 numbers are provided with additional delimeters separating empty values", () => {
+				// Act
+				const sum = calculator.add('5,\n,,6,\n\n,');
+
+				// Assert
+				expect(sum).toEqual(11);
+			});
+
+			it("should return the sum correctly if 2 numbers are provided with additional delimeters and values with empty spaces", () => {
+				// Act
+				const sum = calculator.add('5,\n, ,6,\n \n,');
+
+				// Assert
+				expect(sum).toEqual(11);
+			});
+
+			it("should accept delimiter change in the format //;\n1;2 and return sum of the numnbers in string", () => {
+				// Arrange
+				const input = '//;\n1;2;3';
+				
+				// Act
+				const sum = calculator.add(input);
+
+				// Assert
+				expect(sum).toEqual(6);
+			});
 		});
 
-		it("should return the number as is if single number is provided in string", () => {
-			// Act
-			const sum = calculator.add('5');
-
-			// Assert
-			expect(sum).toEqual(5);
+		describe("negative scenarios > ", () => {
+			it("should throw error if the string contains non-numeric values", () => {
+				// Act, Assert
+				expect(() => {
+					calculator.add('5,\n, ,6,\nasd\n,');
+				}).toThrow('Invalid string: Non-numeric values detected!');
+			});
 		});
 	});
 });
