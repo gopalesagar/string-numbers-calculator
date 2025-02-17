@@ -32,7 +32,7 @@ describe("String Calculator", () => {
 				expect(sum).toEqual(0);
 			});
 
-			it("should return the number as the sum, if single number is provided in string", () => {
+			it("should return the number as the resulting sum, if single number is provided in string", () => {
 				// Act
 				const sum = calculator.add('5');
 
@@ -40,7 +40,7 @@ describe("String Calculator", () => {
 				expect(sum).toEqual(5);
 			});
 
-			it("should return the number as the sum, if the string has only one number and additional delimeters separating empty values", () => {
+			it("should return the number as the resulting sum, if the string has only one number and additional delimeters separating empty values", () => {
 				// Act
 				const sum = calculator.add('\n9,,');
 
@@ -72,6 +72,14 @@ describe("String Calculator", () => {
 				expect(sum).toEqual(11);
 			});
 
+			it("should return the sum correctly if positive decimal numbers are provided in the string", () => {
+				// Act
+				const sum = calculator.add('5.3,\n, ,6.2,\n \n,3,0.9');
+
+				// Assert
+				expect(sum).toEqual(15.4);
+			});
+
 			it("should accept delimiter change in the format //;\n1;2 and return sum of the numnbers in string", () => {
 				// Arrange
 				const input = '//;\n1;2;3';
@@ -99,7 +107,17 @@ describe("String Calculator", () => {
 				// Act, Assert
 				expect(() => {
 					calculator.add(input);
-				}).toThrow('Negative numbers are not allowed. Negative found: -6,-11');
+				}).toThrow('Negative numbers are not allowed. Negatives found: -6,-11');
+			});
+
+			it("should throw error if the new delimiter does not match the delimiters in the string", () => {
+				// Arrange
+				const input = '//;\n1;2,3;4;10';
+
+				// Act, Assert
+				expect(() => {
+					calculator.add(input);
+				}).toThrow('Invalid string: Non-numeric values detected!');
 			});
 		});
 	});

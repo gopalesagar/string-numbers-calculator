@@ -20,7 +20,7 @@ export class StringNumberCalculator {
 		});
 
 		if(negativeInputNumbers && negativeInputNumbers.length > 0) {
-			throw new Error(`Negative numbers are not allowed. Negative found: ${negativeInputNumbers.join(',')}`);
+			throw new Error(`Negative numbers are not allowed. Negatives found: ${negativeInputNumbers.join(',')}`);
 		}
 
 		for(let i = 0; i < inputNumbers.length; i++) {
