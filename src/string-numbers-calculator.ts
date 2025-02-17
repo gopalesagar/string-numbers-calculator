@@ -6,10 +6,16 @@ export class StringNumberCalculator {
 		}
 		let delimiterPattern = /[\n,]+/;
 
-		const changeDelimiterMatch = input.match(/^\/\/([^\n]+)\n/);
-    if (changeDelimiterMatch) {
-      delimiterPattern = new RegExp(`[${changeDelimiterMatch[1]}\n]+`);
-      input = input.replace(changeDelimiterMatch[0], '');
+		const singleCharacterDelimiterMatch = input.match(/^\/\/(.)\n/);
+		const multiCharacterDelimiterMatch = input.match(/^\/\/(\[.*?\])\n/);
+		if(multiCharacterDelimiterMatch) {
+			const multiCharacterDelimiter = multiCharacterDelimiterMatch[1]?.slice(1, -1);
+			delimiterPattern = new RegExp(`[${multiCharacterDelimiter}\n]+`);
+			input = input.replace(multiCharacterDelimiterMatch[0], '');
+		}
+    if (singleCharacterDelimiterMatch) {
+      delimiterPattern = new RegExp(`[${singleCharacterDelimiterMatch[1]}\n]+`);
+      input = input.replace(singleCharacterDelimiterMatch[0], '');
     }
 		const negativeInputNumbers: number[] = [];
 		const inputNumbers = input.split(delimiterPattern).map(inputNumber => {

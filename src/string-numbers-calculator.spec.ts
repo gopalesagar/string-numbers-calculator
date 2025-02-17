@@ -91,15 +91,26 @@ describe("String Calculator", () => {
 				expect(sum).toEqual(6);
 			});
 
-			it("should ignore numbers greater than 1000 if any present in the ", () => {
+			it("should ignore numbers greater than 1000 if any present in the input", () => {
 				// Arrange
-				const input = '//;\n1;2000;3';
+				const input = '//;\n1;2000;3;1000';
 				
 				// Act
 				const sum = calculator.add(input);
 
 				// Assert
-				expect(sum).toEqual(4);
+				expect(sum).toEqual(1004);
+			});
+
+			it("should accept new delimeter of length more than 1", () => {
+				// Arrange
+				const input = '//[###]\n1###2000###3###1000';
+				
+				// Act
+				const sum = calculator.add(input);
+
+				// Assert
+				expect(sum).toEqual(1004);
 			});
 		});
 
