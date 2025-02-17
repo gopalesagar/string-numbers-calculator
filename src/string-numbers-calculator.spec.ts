@@ -125,6 +125,17 @@ describe("String Calculator", () => {
 				// Assert
 				expect(sum).toEqual(1004);
 			});
+
+			// it("should accept multiple new delimiter", () => {
+			// 	// Arrange
+			// 	const input = '//[###][$$$]\n1###2000$$$3###1000';
+				
+			// 	// Act
+			// 	const sum = calculator.add(input);
+
+			// 	// Assert
+			// 	expect(sum).toEqual(1004);
+			// });
 		});
 
 		describe("negative scenarios > ", () => {
