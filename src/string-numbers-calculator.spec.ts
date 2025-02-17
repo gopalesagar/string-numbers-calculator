@@ -90,6 +90,17 @@ describe("String Calculator", () => {
 				// Assert
 				expect(sum).toEqual(6);
 			});
+
+			it("should ignore numbers greater than 1000 if any present in the ", () => {
+				// Arrange
+				const input = '//;\n1;2000;3';
+				
+				// Act
+				const sum = calculator.add(input);
+
+				// Assert
+				expect(sum).toEqual(4);
+			});
 		});
 
 		describe("negative scenarios > ", () => {

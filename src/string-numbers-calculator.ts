@@ -24,7 +24,9 @@ export class StringNumberCalculator {
 		}
 
 		for(let i = 0; i < inputNumbers.length; i++) {
-			sum = sum + inputNumbers[i];
+			if(inputNumbers[i] <= 1000) {
+				sum = sum + inputNumbers[i];
+			}
 		}
 		return sum;
 	}
