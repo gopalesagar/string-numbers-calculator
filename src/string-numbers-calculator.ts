@@ -5,20 +5,19 @@ export class StringNumberCalculator {
 			return sum;
 		}
 		let delimiterPattern = /[\n,]+/;
-
+		let delimiter;
 		const singleCharacterDelimiterMatch = input.match(/^\/\/(.)\n/);
 		const multiCharacterDelimiterMatch = input.match(/^\/\/(\[.*?\])\n/);
 		if(multiCharacterDelimiterMatch) {
-			const multiCharacterDelimiter = multiCharacterDelimiterMatch[1]?.slice(1, -1);
-			delimiterPattern = new RegExp(`[${multiCharacterDelimiter}\n]+`);
+			delimiter = multiCharacterDelimiterMatch[1]?.slice(1, -1);
 			input = input.replace(multiCharacterDelimiterMatch[0], '');
 		}
     if (singleCharacterDelimiterMatch) {
-      delimiterPattern = new RegExp(`[${singleCharacterDelimiterMatch[1]}\n]+`);
+      delimiter = singleCharacterDelimiterMatch[1];
       input = input.replace(singleCharacterDelimiterMatch[0], '');
     }
 		const negativeInputNumbers: number[] = [];
-		const inputNumbers = input.split(delimiterPattern).map(inputNumber => {
+		const inputNumbers = input.split(delimiter || delimiterPattern).map(inputNumber => {
 			if(Number.isNaN(Number(inputNumber))) throw new Error('Invalid string: Non-numeric values detected!');
 			const result = Number(inputNumber);
 			if(result < 0) negativeInputNumbers.push(result);

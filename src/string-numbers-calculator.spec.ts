@@ -1,3 +1,4 @@
+import { randomBytes } from 'crypto';
 import { StringNumberCalculator } from "../src/string-numbers-calculator";
 
 describe("String Calculator", () => {
@@ -105,6 +106,18 @@ describe("String Calculator", () => {
 			it("should accept new delimeter of length more than 1", () => {
 				// Arrange
 				const input = '//[###]\n1###2000###3###1000';
+				
+				// Act
+				const sum = calculator.add(input);
+
+				// Assert
+				expect(sum).toEqual(1004);
+			});
+
+			it("should accept new delimeter containing random characters", () => {
+				// Arrange
+				const randomDelimiter = randomBytes(5).toString('hex');
+				const input = `//[${randomDelimiter}]\n1${randomDelimiter}2000${randomDelimiter}3${randomDelimiter}1000`;
 				
 				// Act
 				const sum = calculator.add(input);
